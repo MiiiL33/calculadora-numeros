@@ -1,0 +1,22 @@
+public static String Dividir(String num1, int num2, String opcion){ //listo
+        String aux2 = Integer.toString(num2);
+        int op = codigoOperacion(num1,aux2);
+        //System.out.println("Dividir: num1: " + num1 + " | num2: " + num2 + " | opción: " + opcion);
+        num1 = valorAbsoluto(num1);
+        num2 = Math.abs(num2);
+        String resultado = "";
+        int acarreo = 0; //el acarreo será 0 inicialmente
+        for(int i = 0; i < num1.length(); i++){ //iterando el dividendo
+            String b = "" + num1.charAt(i);
+            int x = acarreo * 10 + Integer.parseInt(b); //preparando el numero para ser dividido
+            resultado = resultado + Integer.toString(x / num2); //agregando el resultado con el cuociente parcial
+            acarreo = x % num2; //preparar el acarreo para la siguiente iteración
+        }
+        String resto = Integer.toString(acarreo);
+        if (opcion.equals("dividir")){
+            if (op == 3 || op == 4 || op == 5 || op == 6 || op == 11 || op == 12) return ("-" + eliminarCeros(resultado));
+            else return eliminarCeros(resultado);
+        }
+        else if (opcion.equals("resto")) return resto;
+        return ""; //retorna string vacio si el número ingresado no tiene nada válido
+    }
